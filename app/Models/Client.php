@@ -51,9 +51,51 @@ class Client extends Model
         return $errors;
     }
 
+     public function validatesUpdate($request){
+        $errors=array();
 
-    
+        $cliente = Client::where('id', '=', $request -> id)->get()->first();
+        
+        if (empty($cliente)){
+            array_push($errors, 'O usuário não foi encontrado no sistema');
+            return [$errors];
+        }
 
-    
+        $cliente = Client::where('email', '=', $request -> email)->get()->first();
+        if (!empty($cliente)){
+            if (($cliente -> email == $request -> email) && ($cliente -> id != $request -> id)){
+                array_push($errors, 'Este email já está cadastrado');
+                return [$errors];
+                }
+        }
 
+        $cliente = Client::where('cpf', '=', $request -> cpf)->get()->first();
+        if (!empty($cliente)){
+            if (($cliente -> cpf == $request -> cpf) && ($cliente -> id != $request -> id)){
+                array_push($errors,'O usuário com este cpf já está cadastrado');
+                return [$errors];
+            }
+        }
+        
+        return $errors;
+    }
+
+    public function validatesDelete($id){
+        $errors=array();
+
+        $cliente = Client::where('id', '=', $id)->get()->first();
+        if (empty($cliente)){
+            array_push($errors, 'O usuário não foi encontrado no sistema');
+            return [$errors];
+        }
+
+        return $errors;
+        }
+   
 }
+    
+    
+        
+
+    
+

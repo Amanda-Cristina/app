@@ -26,12 +26,12 @@ class PizzaController extends Controller
         try{
             
             $request -> validate([
-                'nome' => 'required',
-                'codigo' => 'required',
-                'descricao' => 'required',
-                'imagem' => 'required',
-                'categoria' => 'required',
-                'preco' => 'required'
+                'nome' => 'required|string',
+                'codigo' => 'required|string',
+                'descricao' => 'required|string',
+                'imagem' => 'required|string',
+                'categoria' => 'required|string',
+                'preco' => 'required|numeric'
                 
                  ]);
 
@@ -58,8 +58,9 @@ class PizzaController extends Controller
     public function updatePizza(Request $request){
         try{
             $request -> validate([
-                'id' => 'required',
-                'codigo' => 'required'
+                'id' => 'required|string',
+                'codigo' => 'required|string',
+                'nome' => 'required|string'
                 
                  ]);
 
