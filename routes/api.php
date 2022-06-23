@@ -16,12 +16,18 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PizzaController;
+use App\Http\Controllers\AuthController;
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
 
 Route::group(['middleware'=>['auth:sanctum']], function() {
     Route::post('/Pizza/Atualizar-Cadastro', [PizzaController::class, 'updatePizza']);
+    Route::post('/Client/Cadastro', [ClientController::class, 'inserirClient']);
+    Route::post('/Pizza/Cadastro', [PizzaController::class, 'inserirPizza']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 
 
-Route::post('/Client/Cadastro', [ClientController::class, 'inserirClient']);
-Route::post('/Pizza/Cadastro', [PizzaController::class, 'inserirPizza']);
-Route::get('/teste', [ClientController::class, 'index']);
+
