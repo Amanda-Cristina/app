@@ -1,64 +1,35 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+ Pizzaria
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Relatório do projeto
 
-## About Laravel
+[CLIQUE PARA ABRIR O RELATÓRIO DO PROJETO](https://docs.google.com/document/d/1T7GlLZ8GmShC1bqdgOnr8V6-e0NnflBO8NITUfEsmnQ/edit)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Informações básicas sobre o projeto:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  - A aplicação baseia-se em um ecommerce de pizzas, com diversos produtos, no qual o usuário precisaria se cadastrar para realizar suas compras;  
+  - O objetivo é o desenvolvimento de uma API (Web Service) utilizando o [Laravel](https://laravel.com/);
+  - O projeto segue o padrão MVC;
+  - Foi implementado o CRUD com o modelo ORM do Laravel na parte de controle de cliente e catálogo de pizzas;
+  - A verificação do Banco de Dados, MySQL, foi realizada pela interface phpMyAdmin disponibilizada pelo Xampp;
+  - O servidor está configurado localmente no endereço 127.0.0.1:8000;
+  - Está sendo utilizado o sistema de autenticação [Laravel Sanctum](https://laravel.com/docs/9.x/sanctum). No registro ou no login é gerado um token que permite acesso as rotas seguras. 
+  - Para os testes de rotas e funcionalidades da API foi utilizado o cliente HTTP [Postman](https://www.postman.com). 
+  
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Configurações
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+O projeto foi configurado a partir do framework Laravel na versão `v9.18.0`. A instalação foi feita pelo [Composer](https://getcomposer.org/) `version 2.3.5`, utilizando o seguinte comando:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    composer create-project laravel/laravel <nome projeto>
 
-## Laravel Sponsors
+O servidor da API foi configurado de forma local (127.0.0.1:8000) e utilizando o gerenciador MySQL. A comunicação com o banco ocorre pelo modelo ORM disponibilizado pelo Laravel. 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+A pasta do projeto `app` foi criada dentro do `htdocs` no repositório do xampp. As configurações do banco devem ser definidas no arquivo `.env`, principalmente o nome do banco, o usuário e a senha. Neste projeto a base está definida como `aulabd`.
 
-### Premium Partners
+Para o sistema de autenticação com token foi configurado o sistema Laravel Sanctum da seguinte forma:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+    composer require laravel/sanctum
+    php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+    php artisan migrate
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
