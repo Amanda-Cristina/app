@@ -57,4 +57,16 @@ class Pizza extends Model
         
         return $errors;
     }
+
+    public function validatesDelete($id){
+        $errors=array();
+
+        $pizza = Pizza::where('id', '=', $id)->get()->first();
+        if (empty($pizza)){
+            array_push($errors, 'A Pizza não foi encontrada no sistema');
+            return [$errors];
+        }
+
+        return $errors;
+        }
 }

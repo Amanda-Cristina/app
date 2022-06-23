@@ -21,11 +21,17 @@ use App\Http\Controllers\AuthController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('pizza/busca', [PizzaController::class, 'selectPizza']);
+Route::get('pizza/lista', [PizzaController::class, 'selectList']);
+
 
 Route::group(['middleware'=>['auth:sanctum']], function() {
-    Route::post('/Pizza/Atualizar-Cadastro', [PizzaController::class, 'updatePizza']);
-    Route::post('/Client/Cadastro', [ClientController::class, 'inserirClient']);
-    Route::post('/Pizza/Cadastro', [PizzaController::class, 'inserirPizza']);
+    Route::post('/pizza/registro', [PizzaController::class, 'inserirPizza']);
+    Route::post('pizza/cancelar-registro', [PizzaController::class, 'deletePizza']);
+    Route::post('/pizza/atualizar-registro', [PizzaController::class, 'updatePizza']);
+    
+
+    Route::post('/client/cadastro', [ClientController::class, 'inserirClient']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
