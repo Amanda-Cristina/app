@@ -26,23 +26,17 @@ class Client extends Model
 {
     use HasFactory;
 
-
     
-    
-
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 
     public function attributes(): array{
         return ['nome', 'cpf', 'email', 'cep', 'numero', 'rua', 'bairro', 'cidade', 'estado', 'senha', 'telefone'];
     }
 
-    public function loadData($dados, $classe){
-
-        $encoders = [new JsonEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-        $this->serializer = new Serializer($normalizers, $encoders);
-        return $this->serializer->deserialize($dados, $classe, 'json');
-    }
-
+    
     public function validatesInsert($request){
         $errors=array();
         if (!empty(Client::where('email', '=', $request -> email)->get()->first())){

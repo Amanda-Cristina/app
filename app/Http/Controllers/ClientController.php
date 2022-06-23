@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Models\Resposta;
+use App\Models\User;
 
 class ClientController extends Controller
 {
@@ -20,24 +21,32 @@ class ClientController extends Controller
         
     }
 
-    public function validatesForm($request){
-        $request -> validate([
-            'nome' => 'required',
-            'codigo' => 'required',
-            'descricao' => 'required',
-            'imagem' => 'required',
-            'categoria' => 'required',
-            'preco' => 'required'
-            
-             ]);
-
-    }
 
    
     public function inserirClient(Request $request){
 
         try{
-            $this -> validatesForm($request);
+            $fields = $request -> validate([
+                'nome' => 'required|string',
+                'cpf' => 'required',
+                'email' => 'required|string|unique:users,email',
+                'telefone' => 'required',
+                'cep' => 'required',
+                'numero' => 'required',
+                'rua' => 'required',
+                'bairro' => 'required',
+                'cidade' => 'required',
+                'estado' => 'required',
+                'senha' => 'required|string',
+                
+                 ]);
+
+        
+                $user = User::firstOrCreate([
+                    'name' => $fields['nome'],
+                    'email' => $fields['email'],
+                    'password' => bcrypt($fields['senha'])
+                ]);
 
             $errors = $this -> cliente -> validatesInsert($request);
             if(empty($errors)){
@@ -46,6 +55,8 @@ class ClientController extends Controller
                     $this -> cliente -> $attribute = $request -> input($attribute); 
                     
                 endforeach;
+                $this -> cliente -> user_id = $user -> id;
+
                 $this -> cliente -> save();
                 new Resposta(200, ["Inserção com sucesso"]);
             }

@@ -18,6 +18,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PizzaController;
 use App\Http\Controllers\AuthController;
 
+Route::post('/client/cadastro', [ClientController::class, 'inserirClient']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -30,8 +31,6 @@ Route::group(['middleware'=>['auth:sanctum']], function() {
     Route::post('pizza/cancelar-registro', [PizzaController::class, 'deletePizza']);
     Route::post('/pizza/atualizar-registro', [PizzaController::class, 'updatePizza']);
     
-
-    Route::post('/client/cadastro', [ClientController::class, 'inserirClient']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 

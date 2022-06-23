@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('cidade');
             $table->string('estado');
             $table->string('senha');
+            $table->foreignId('user_id');
 
             $table->timestamps();
         });
