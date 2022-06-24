@@ -58,7 +58,7 @@ class PizzaController extends Controller
     public function updatePizza(Request $request){
         try{
             $request -> validate([
-                'id' => 'required|string',
+                'id' => 'required',
                 'codigo' => 'required|string',
                 'nome' => 'required|string'
                 
